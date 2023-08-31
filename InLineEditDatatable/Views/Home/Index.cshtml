@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>DATATABLES.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+
+@section scripts{
+    <link rel="stylesheet" href="~/Content/jquery-ui.css">
+    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="~/Scripts/moment.js"></script>
+    <script type="text/javascript" charset="utf8" src="~/Scripts/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="~/Scripts/dataTables.cellEdit.js"></script>
+
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    $('#myTable').DataTable();
+        //});
+
+        var table;
+        $(document).ready(function () {
+            debugger;
+            table = $('#myTable').DataTable();
+            table.MakeCellsEditable({
+                "onUpdate": myCallbackFunction,
+                "inputCss": 'my-input-class',
+                "columns": [0, 1, 2],
+                "allowNulls": {
+                    "columns": [1],
+                    "errorClass": 'error'
+                },
+                "confirmationButton": {
+                    "confirmCss": 'my-confirm-class',
+                    "cancelCss": 'my-cancel-class'
+                },
+                "inputTypes": [
+                    {
+                        "column": 0,
+                        "type": "text"
+
+                    },
+                    {
+                        "column": 1,
+                        "type": "text"
+                    },
+                    {
+                        "column": 2,
+                        "type": "datepicker"
+                    }
+                ]
+            });
+        });
+
+        function myCallbackFunction(updatedCell, updatedRow, oldValue) {
+            //console.log("The new value for the cell is: " + updatedCell.data());
+            //console.log("The old value for that cell was: " + oldValue);
+            //console.log("The values for each cell in that row are: " + updatedRow.data());
+        }
+
+        function destroyTable() {
+            if ($.fn.DataTable.isDataTable('#myTable')) {
+                table.destroy();
+                table.MakeCellsEditable("destroy");
+            }
+        }
+    </script>
+}
+<table id="myTable" class="table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>DOB</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Elliott</td>
+            <td>Beaty</td>
+            <td>01/14/2011</td>
+        </tr>
+        <tr>
+            <td>Joe</td>
+            <td>Dirt</td>
+            <td>01/14/2004</td>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>01/14/2003</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>Doe</td>
+            <td>01/11/2001</td>
+        </tr>
+        <tr>
+            <td>Billy</td>
+            <td>Bob</td>
+            <td>02/14/1947</td>
+        </tr>
+        <tr>
+            <td>Bobby</td>
+            <td>Axlerod</td>
+            <td>01/27/2001</td>
+        </tr>
+        <tr>
+            <td>Elliott</td>
+            <td>Beaty</td>
+            <td>01/13/2007</td>
+        </tr>
+        <tr>
+            <td>Joe</td>
+            <td>Dirt</td>
+            <td>01/14/2001</td>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>01/14/2001</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>Doe</td>
+            <td>01/14/2001</td>
+        </tr>
+        <tr>
+            <td>Billy</td>
+            <td>Bob</td>
+            <td>01/14/2001</td>
+        </tr>
+        <tr>
+            <td>Bobby</td>
+            <td>Axlerod</td>
+            <td>01/14/2001</td>
+        </tr>
+    </tbody>
+</table>
